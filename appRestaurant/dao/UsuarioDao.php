@@ -28,7 +28,7 @@ class UsuarioDao extends conexion{
 	public function Buscar(Usuario $user){
 		
 		
-		$sqlquery="SELECT u.id,u.username,r.dsccorta codigoPerfil,r.descripcion desperfil,e.nombres,e.apellidos
+		$sqlquery="SELECT u.id,u.username,r.dsccorta codigoPerfil,r.descripcion desPerfil,e.nombres,e.apellidos,u.estado
 		FROM usuario u, empleado e, userxrol ur, rol r
 		WHERE u.id=e.iduser
 		AND u.id=ur.iduser
@@ -38,15 +38,18 @@ class UsuarioDao extends conexion{
 		AND u.username=:username
 		AND u.password=:password
 		";
+		$a="PEPE";
+		$p="123";
 
 		try {
 					
 			$stmt = $this->conectar()->prepare($sqlquery);
-			$stmt->bindParam(":username",$user->getUsername(), PDO::PARAM_STR);
+			$stmt->bindParam(":username", $user->getUsername(), PDO::PARAM_STR);
 			$stmt->bindParam(":password",$user->getContrasena(), PDO::PARAM_STR);
 			$stmt -> execute();
 	
 			return $stmt -> fetch();
+
 		} catch (Exception $e) {
 			die('Error UsuarioDao : Buscar'.$e->getMessage());
 		} finally{

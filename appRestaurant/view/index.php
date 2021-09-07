@@ -1,6 +1,7 @@
 <?php 
-  
-  
+ 
+session_start();
+
   if((!isset($_SESSION['uid']) && !isset($_SESSION['username']) && isset($_SESSION['user_role'])) ) 
     header("Location: ../login.php");
 
@@ -71,7 +72,7 @@
 
 
         <?php
-
+ 
 if ($_SESSION['user_role'] == "ADMIN") {
   echo '
       <li class="nav-item">
@@ -187,27 +188,6 @@ if ($_SESSION['user_role'] == "CMRRO") {
                       <td><b>Personal</b></td>
                       <td><b>Estado</b></td>
                     </tr>
-
-                    <?php 
-                      $displayStaffQuery = "SELECT username,status FROM tbl_staff";
-
-                          if ($result = $sqlconnection->query($displayStaffQuery)) {
-                            while($staff = $result->fetch_array(MYSQLI_ASSOC)) {
-                              echo "<tr>";
-                              echo "<td>{$staff['username']}</td>";
-
-                              if ($staff['status'] == "Online") {
-                                echo "<td><span class=\"badge badge-success\">Activo</span></td>";
-                              }
-
-                              if ($staff['status'] == "Offline") {
-                                echo "<td><span class=\"badge badge-secondary\">Inactivo</span></td>";
-                              }
-
-                              echo "</tr>";
-                            }
-                          }
-                    ?>
                   </table>
                 </div>
               </div>
