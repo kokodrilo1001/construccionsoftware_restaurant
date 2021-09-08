@@ -1,7 +1,7 @@
 <?php
 Class Empleado{
     /* @var int */
-    private $codigo;
+    private $ad;
     /* @var string */
     private $apellidos;
     private $nombres;
