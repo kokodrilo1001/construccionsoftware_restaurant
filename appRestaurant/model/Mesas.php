@@ -3,7 +3,7 @@ Class Empleado{
     /* @var int */
     private $ad;
     /* @var string */
-    private $apellidos;
+    private $mesa1;
     private $nombres;
 	private $nombreCompleto;
     /* @var usuario */
